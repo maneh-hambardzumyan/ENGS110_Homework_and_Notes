@@ -9,8 +9,8 @@ if (op== '+'){
     printf("%i %c %i =%i\n", x, op, y, x+y);
 
 }
-if (op== '/'){
-    printf("%i %c %i =%i\n", x, op, y, x/y);
+if (op== '-'){
+    printf("%i %c %i =%i\n", x, op, y, x-y);
     
 }
 if (op== '/'){
