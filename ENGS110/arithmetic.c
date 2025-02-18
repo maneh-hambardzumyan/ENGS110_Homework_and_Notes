@@ -3,12 +3,10 @@
 int main() {
     int num1, num2;
     char op;
-    
-    // Prompt user to enter an arithmetic expression
+      
     printf("Enter an arithmetic expression (number operator number): ");
     scanf("%d %c %d", &num1, &op, &num2);
     
-    // Use switch to determine the operation
     switch(op) {
         case '+':
             printf("%d + %d = %d\n", num1, num2, num1 + num2);
