@@ -3,11 +3,18 @@
 int main() {
     int num1, num2;
     char op;
+<<<<<<< HEAD:ENGS110/arithmeticoperations.c
     
     printf("Enter an arithmetic expression (number operator number): ");
     scanf("%d %c %d", &num1, &op, &num2);
     
   
+=======
+      
+    printf("Enter an arithmetic expression (number operator number): ");
+    scanf("%d %c %d", &num1, &op, &num2);
+    
+>>>>>>> 9086e5b153a478fb97e7bfcab2f31f70e2bb6443:ENGS110/arithmetic.c
     switch(op) {
         case '+':
             printf("%d + %d = %d\n", num1, num2, num1 + num2);
