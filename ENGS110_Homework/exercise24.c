@@ -1,44 +1,43 @@
 #include <stdio.h>
 
+// Function to delete the M-th element from the sequence
+void deleteElement(int arr[], int *n, int m) {
+    // Check if the position M is valid (1 <= M <= N)
+    if (m < 1 || m > *n) {
+        printf("Invalid position M\n");
+        return;
+    }
+    
+    // Shift all elements after the M-th element to the left
+    for (int i = m - 1; i < *n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    
+    // Decrease the size of the array by 1
+    (*n)--;
+}
+
 int main() {
-    int N, M;
-
-    // Ask for the number of elements in the sequence
-    printf("Enter the number of elements: ");
-    scanf("%d", &N);
-
-    int arr[N];  // Declare an array of size N
-
-    // Input N numbers into the array
-    printf("Enter %d numbers:\n", N);
-    for (int i = 0; i < N; i++) {
-        scanf("%d", &arr[i]);
+    int arr[] = {1, 4, 5, 6, 3};  // Initial sequence
+    int n = 5;  // Length of the sequence
+    int m = 3;  // Position of the element to delete (e.g., the 3rd element)
+    
+    printf("Original array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
     }
-
-    // Ask the user which element to delete (M-th element)
-    printf("Enter the position M to delete (1-based index): ");
-    scanf("%d", &M);
-
-    // Check if M is valid
-    if (M < 1 || M > N) {
-        printf("Invalid position! M must be between 1 and %d.\n", N);
-        return 1;
-    }
-
-    // Delete the M-th element by shifting elements to the left
-    for (int i = M - 1; i < N - 1; i++) {
-        arr[i] = arr[i + 1];  // Shift elements to the left
-    }
-
-    // Decrease the size of the array (effectively one element is deleted)
-    N--;
-
-    // Output the array after deletion
-    printf("Array after deletion:\n");
-    for (int i = 0; i < N; i++) {
+    printf("\n");
+    
+    // Delete the M-th element
+    deleteElement(arr, &n, m);
+    
+    // Print the array after deletion
+    printf("Array after deleting the %d-th element: ", m);
+    for (int i = 0; i < n; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
 
     return 0;
 }
+
