@@ -24,5 +24,6 @@ March 4 - We continued learning about threads, understanding their purpose and r
 
 March 6 - We had a guest lecture focused on product development, discussing various examples. The lecture primarily centered on understanding requirements using the five Ws: What, When, Who, Why, and How.
 
+April 1 During class, we learned about structures in C and how to implement them. Structures allow grouping different data types under one name, making programs more organized and efficient. We practiced defining, initializing, and accessing structure members, which is useful for handling complex data. This knowledge will help to write better-structured code, especially for engineering and real-world applications.
 
 
