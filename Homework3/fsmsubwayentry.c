@@ -2,21 +2,21 @@
 
 // Defineing states of the subway entry system using an enum to clearly define and group related states and events, making the code, type-safe, and easier to maintain.
 typedef enum {
-    WAITING_FOR_CARD,  // Initial state of waiting for the card to be inserted
-    CARD_INSERTED,     // State after the card is inserted
-    VALIDATING_CARD,   // State when the card is being validated
-    ACCESS_GRANTED,    // State when the card is validated and access is granted
-    ACCESS_DENIED,     // State when card validation fails, access is denied
-    ENTERING_PLATFORM  // State after access is granted and the user enters the platform
+    WAITING_FOR_CARD,  
+    CARD_INSERTED,     
+    VALIDATING_CARD,   
+    ACCESS_GRANTED,   
+    ACCESS_DENIED,     
+    ENTERING_PLATFORM  
 } State;
 
 // Defining events that trigger state transitions using an enum
 typedef enum {
-    INSERT_CARD,    // When a card is inserted into the system
-    VALIDATE_CARD,  // Event to start the card validation process
-    GRANT_ACCESS,   // When the system grants access after successful validation
-    DENY_ACCESS,    // When the system denies access due to invalid card
-    ENTER_PLATFORM  // When the user enters the platform after access is granted
+    INSERT_CARD,    
+    VALIDATE_CARD,  
+    GRANT_ACCESS,   
+    DENY_ACCESS,    
+    ENTER_PLATFORM  
 } Event;
 
 // The current state of the system 
@@ -81,18 +81,18 @@ int main() {
     printf("Simulation begins:\n");
 
     // Simulate inserting a card and granting access
-    handleEvent(INSERT_CARD);        // Card inserted
-    handleEvent(VALIDATE_CARD);      // Validate card
-    handleEvent(GRANT_ACCESS);       // Grant access after validation
-    handleEvent(ENTER_PLATFORM);     // User enters the platform
+    handleEvent(INSERT_CARD);        
+    handleEvent(VALIDATE_CARD);      
+    handleEvent(GRANT_ACCESS);       
+    handleEvent(ENTER_PLATFORM);     
 
     // Simulateing access denied scenario
     printf("\nSimulation for access denied begins:\n");
-    currentState = WAITING_FOR_CARD; // Reset state to initial state
-    handleEvent(INSERT_CARD);        // Card inserted again
-    handleEvent(VALIDATE_CARD);      // Validate card
-    handleEvent(DENY_ACCESS);        // Deny access because card is invalid
-    handleEvent(INSERT_CARD);        // Try inserting card again
+    currentState = WAITING_FOR_CARD; 
+    handleEvent(INSERT_CARD);        
+    handleEvent(VALIDATE_CARD);      
+    handleEvent(DENY_ACCESS);        
+    handleEvent(INSERT_CARD);        
 
     return 0;
 }
