@@ -1,19 +1,19 @@
 #include <stdio.h>
 
-// Define the states of the vending machine
+// Defining the states of the vending machine
 typedef enum {
-    WAITING_FOR_COINS,    // The machine is waiting for coins
-    COINS_INSERTED,       // Coins are inserted, awaiting product selection
-    DISPENSE_PRODUCT,     // Product is being dispensed
-    OUT_OF_STOCK          // The product is out of stock
+    WAITING_FOR_COINS,    
+    COINS_INSERTED,       
+    DISPENSE_PRODUCT,     
+    OUT_OF_STOCK          
 } State;
 
-// Define events that trigger state transitions
+// Defining events that trigger state transitions
 typedef enum {
-    INSERT_COIN,          // Event when a coin is inserted
-    SELECT_PRODUCT,       // Event when a product is selected
-    DISPENSED_PRODUCT,    // Event when a product is dispensed
-    OUT_OF_STOCK_EVENT    // Event when the selected product is out of stock
+    INSERT_COIN,          
+    SELECT_PRODUCT,       
+    DISPENSED_PRODUCT,    
+    OUT_OF_STOCK_EVENT    
 } Event;
 
 // Current state of the vending machine
