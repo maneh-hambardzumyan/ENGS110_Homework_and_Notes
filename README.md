@@ -26,4 +26,6 @@ March 6 - We had a guest lecture focused on product development, discussing vari
 
 April 1 During class, we learned about structures in C and how to implement them. Structures allow grouping different data types under one name, making programs more organized and efficient. We practiced defining, initializing, and accessing structure members, which is useful for handling complex data. This knowledge will help to write better-structured code, especially for engineering and real-world applications.
 
+April 3, 8, 10- In the last few classes, we covered Finite State Machines (FSM) and practiced related exercises to strengthen our understanding writing program for traffic light. We also created our own version of the string.h library and worked with functions like strlen and strcpy to manipulate strings, also used replace and swap functions to change letters in a text.
+
 
