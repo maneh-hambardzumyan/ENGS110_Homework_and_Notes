@@ -28,7 +28,9 @@ April 1 During class, we learned about structures in C and how to implement them
 
 April 3, 8, 10- In the last few classes, we covered Finite State Machines (FSM) and practiced related exercises to strengthen our understanding writing program for traffic light. We also created our own version of the string.h library and worked with functions like strlen and strcpy to manipulate strings, also used replace and swap functions to change letters in a text.
 
-April 15, 17, 22, 29 - We continued exploring structs and data structures, we learned about lists and how to use them to store and manage sequences of data dynamically. We focused on implementing lists in C using arrays and pointers, with operations like insertion, deletion, and resizing. This helped us understand how memory management and data structures work at a low level.
-=======
 April 15, 17 - During this two classes we made PRD for our projects with Ms Satenik and commented each other's drafts giving feedback. We also finalized our projects' ideas.
->>>>>>> a1cf400869b898124820fab2bb4ac61e36e98bdd
+
+April 22, 29 - We continued exploring structs and data structures, we learned about lists and how to use them to store and manage sequences of data dynamically. We focused on implementing lists in C using arrays and pointers, with operations like insertion, deletion, and resizing. This helped us understand how memory management and data structures work at a low level.
+
+
+
