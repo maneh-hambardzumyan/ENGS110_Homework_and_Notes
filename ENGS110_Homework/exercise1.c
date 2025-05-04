@@ -40,7 +40,7 @@ int main() {
                 printf("Error: Division by zero is not allowed.\n");
             } else {
                 // If num2 is non-zero, perform division and print the result with 3 decimal places
-                printf("%d / %d = %.3f\n", num1, num2, (double)num1 / num2);
+                printf("%d / %d = %.3f\n", num1, num2, (float)num1 / num2);
             }
             break;  // Exit the switch statement after handling division
 
