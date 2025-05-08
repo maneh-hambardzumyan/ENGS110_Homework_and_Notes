@@ -1,15 +1,13 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -ggdb
-OBJS = array.o main.o
+SRC:= test.c array.c
+OBJ:=$(SRC:.c=.o)
+FLAGS:= -Werror -Wall -Wextra
+EXE:=exe
 
-exe: $(OBJS)
-	$(CC) $(OBJS) -o exe
+$(EXE): $(OBJ)
+	gcc -o $@ $^
 
-array.o: array.c array.h
-	$(CC) $(CFLAGS) -c array.c
-
-main.o: main.c array.h
-	$(CC) $(CFLAGS) -c main.c
+%.o: %.c
+	gcc -c $(FLAGS) -g -ggdb -o $@ $<
 
 clean:
-	rm -f *.o exe
+	rm *.o $(EXE)

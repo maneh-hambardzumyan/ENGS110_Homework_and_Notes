@@ -1,128 +1,127 @@
-#include <stdio.h>      
-#include <stdlib.h>     
-#include <string.h>     
-#include <assert.h>     
- 
-typedef int element_type;
+#include "array.h"
 
-typedef int size_type;
+#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
+#include <string.h>
 
-struct array {
-    element_type* start; 
-    size_type size;      
-    size_type capacity;  
-};
-
-struct array* array_create() {
-    struct array* a = (struct array*)malloc(sizeof(struct array)); // allocate memory for the struct
-    assert(a != NULL);  // crashes if allocation failed
-
-    a->size = 0;        
-    a->capacity = 2;    
-
-    // allocate memory for the data array 
-    a->start = (element_type*)malloc(a->capacity * sizeof(element_type));
-    assert(a->start != NULL);  // crashes if allocation failed
-
-    return a;
+// Creates and initializes a new dynamic array
+struct array* array_create()
+{
+    struct array* arr = (struct array*)malloc(sizeof(struct array));
+    assert(arr != NULL);
+    
+    memset(arr, 0, sizeof(struct array));
+    arr->size = 0;
+    arr->capacity = 2;
+    arr->start = (element_type*)malloc(arr->capacity * sizeof(element_type));
+    
+    return arr;
 }
 
-// Adds a new element to the end of the array
-void array_push_back(struct array* a, element_type e) {
-    assert(a != NULL);
+// Appends a new item to the end of the array
+void array_push_back(struct array* arr, element_type value)
+{
+    assert(arr != NULL);
 
-    // If the array is full, doubles its capacity
-    if (a->size >= a->capacity) {
-        a->capacity *= 2;
-        a->start = (element_type*)realloc(a->start, a->capacity * sizeof(element_type));
-        assert(a->start != NULL); // make sure realloc didn't fail
+    // If array is full, make room for more items
+    if (arr->size >= arr->capacity) {
+        arr->capacity *= 2;
+        arr->start = (element_type*)realloc(arr->start, arr->capacity * sizeof(element_type));
+        assert(arr->start != NULL);
     }
 
-    a->start[a->size++] = e;
+    arr->start[arr->size] = value;
+    arr->size++;
 }
 
-// Removes the last element from the array (if any)
-void array_pop_back(struct array* a) {
-    assert(a != NULL);
+// Deletes the last element in the array
+void array_pop_back(struct array* arr)
+{
+    assert(arr != NULL);
+    assert(arr->size > 0);
 
-    if (a->size > 0) {
-        a->size--; 
-    }
+    arr->size--;
 }
 
-// Inserts an element at a specific index, shifting elements to the right
-void array_insert(struct array* a, size_type index, element_type e) {
-    assert(a != NULL);
-    assert(index <= a->size); // inserting at a->size is OK (appending)
+// Adds an element at a specific position in the array
+void array_insert(struct array* arr, size_type index, element_type value)
+{
+    assert(arr != NULL);
+    assert(index <= arr->size);  // valid positions include end
 
-    // If the array is full, doubles its capacity
-    if (a->size >= a->capacity) {
-        a->capacity *= 2;
-        a->start = (element_type*)realloc(a->start, a->capacity * sizeof(element_type));
-        assert(a->start != NULL);
-    }
-
-    // starting from the end shifts elements one position to the right 
-    for (size_type i = a->size; i > index; --i) {
-        a->start[i] = a->start[i - 1];
+    // If no space left, double the capacity
+    if (arr->size >= arr->capacity) {
+        arr->capacity *= 2;
+        arr->start = (element_type*)realloc(arr->start, arr->capacity * sizeof(element_type));
+        assert(arr->start != NULL);
     }
 
-    // Inserts the new element
-    a->start[index] = e;
-    a->size++;  
-}
-
-// Returns the number of elements in the array
-size_type array_size(struct array* a) {
-    assert(a != NULL);
-    return a->size;
-}
-
-// Returns the total capacity of the array
-size_type array_capacity(struct array* a) {
-    assert(a != NULL);
-    return a->capacity;
-}
-
-// Prints the contents of the array, its size, and capacity
-void array_print(struct array* a) {
-    assert(a != NULL);
-
-    for (size_type i = 0; i < a->size; ++i) {
-        printf("%d ", a->start[i]);
+    // Shift all items from the index onward to the right
+    for (size_type i = arr->size; i > index; --i) {
+        arr->start[i] = arr->start[i - 1];
     }
-    printf("\nsize = %d\n", a->size);
-    printf("capacity = %d\n\n", a->capacity);
+
+    arr->start[index] = value;
+    arr->size++;
 }
 
-// Returns 1 if the array is empty, otherwise returns 0
-int array_empty(struct array* a) {
-    assert(a != NULL);
-    return a->size == 0;
+// Returns how many items are currently stored
+size_type array_size(struct array* arr)
+{
+    assert(arr != NULL);
+    return arr->size;
 }
 
+// Returns how much space is allocated in total
+size_type array_capacity(struct array* arr)
+{
+    assert(arr != NULL);
+    return arr->capacity;
+}
+
+// Prints out the array's contents
+void array_print(struct array* arr)
+{
+    assert(arr != NULL);
+
+    for (size_type i = 0; i < arr->size; ++i) {
+        printf("%d ", arr->start[i]);
+    }
+
+    printf("\nsize = %d", arr->size);
+    printf("\ncapacity = %d\n\n", arr->capacity);
+}
+
+// Checks if there are any elements in the array
+int array_empty(struct array* arr)
+{
+    assert(arr != NULL);
+    return arr->size == 0;
+}
+
+// Example main function testing the array
 
 int main() {
-    // Create a new dynamic array
-    struct array* a = array_create();
+    struct array* myArray = array_create();
 
-    // Add some elements to the end
-    array_push_back(a, 10);
-    array_push_back(a, 20);
-    array_push_back(a, 30);
+    array_push_back(myArray, 5);
+    array_push_back(myArray, 10);
+    array_push_back(myArray, 15);
 
-    printf("After push_back:\n");
-    array_print(a);  // should print: 10 20 30
+    array_insert(myArray, 1, 7);  
 
-    // Inserts new element in the middle
-    array_insert(a, 1, 99);  // insert 99 at index 1
-    printf("After insert at index 1:\n");
-    array_print(a);  // should print: 10 99 20 30
+    array_print(myArray);   
+         
+    array_pop_back(myArray);     
 
-    
-    array_pop_back(a);
-    printf("After pop_back:\n");
-    array_print(a);  // should print: 10 99 20
+    array_print(myArray);        
+
+    if (array_empty(myArray)) {
+        printf("Array is empty\n");
+    } else {
+        printf("Array is not empty\n");
+    }
 
     return 0;
 }
